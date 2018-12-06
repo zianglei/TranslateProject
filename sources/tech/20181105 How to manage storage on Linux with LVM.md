@@ -1,18 +1,29 @@
 [zianglei translating]
 How to manage storage on Linux with LVM
+如何使用 LVM 管理 Linux 上的存储
 ======
 Create, expand, and encrypt storage pools as needed with the Linux LVM utilities.
+根据需要使用 Linux LVM 工具集创建、扩展和加密存储池。
+
 ![](https://opensource.com/sites/default/files/styles/image-full-size/public/lead-images/bus-storage.png?itok=95-zvHYl)
 
 Logical Volume Manager ([LVM][1]) is a software-based RAID-like system that lets you create "pools" of storage and add hard drive space to those pools as needed. There are lots of reasons to use it, especially in a data center or any place where storage requirements change over time. Many Linux distributions use it by default for desktop installations, though, because users find the flexibility convenient and there are some built-in encryption features that the LVM structure simplifies.
 
+逻辑盘管理器（[LVM][1]）是一个基于软件的类似 RAID 的系统，允许你创建存储“池”并向这些池中根据需要添加硬盘空间。使用 LVM 有很多原因，特别是在数据中心或者是存储需求随时间变化的地方。然而，很多 Linux 发行版也会在桌面安装的时候默认启用它，因为用户发现它很灵活方便，而且 LVM 简化了一些内置的加密特性。
+
 However, if you aren't used to seeing an LVM volume when booting off of a Live CD for data rescue or migration purposes, LVM can be confusing because the **mount** command can't mount LVM volumes. For that, you need LVM tools installed. The chances are great that your distribution has LVM utils available—if they aren't already installed.
 
+但是，如果你之前为了数据恢复或迁移从 Live CD 引导的时候并没有看到过 LVM 盘，那么 LVM 可能会令人困惑，因为 **mount** 命令并不能挂载 LVM 盘。为了挂载，你需要安装相应的 LVM 工具。即使这些工具并没有安装，你的发行版也有很大可能拥有这些 LVM 工具。
+
 This tutorial explains how to create and deal with LVM volumes.
+本教程将解释如何创建和使用 LVM 卷。
 
 ### Create an LVM pool
+### 创建一个 LVM 池
 
 This article assumes you have a working knowledge of how to interact with hard drives on Linux. If you need more information on the basics before continuing, read my [introduction to hard drives on Linux][2]
+
+这篇文章假设你已经知道如何在 Linux 上与硬盘交互。如果你在继续阅读之前想了解更多信息，可以阅读我的这篇 [介绍 Linux 上的硬盘][2]。
 
 Usually, you don't have to set up LVM at all. When you install Linux, it often defaults to creating a virtual "pool" of storage and adding your machine's hard drive(s) to that pool. However, manually creating an LVM storage pool is a great way to learn what happens behind the scenes.
 
